@@ -1,18 +1,14 @@
 # syntax=docker/dockerfile:1
 
-ARG PYTHON_VERSION=3.12.4
-
-FROM python:${PYTHON_VERSION}-slim
+FROM continuumio/miniconda3
 
 LABEL fly_launch_runtime="flask"
 
 WORKDIR /code
-
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
-
 COPY . .
+RUN conda env create -f environment.yml
+SHELL ["conda", "run", "-n", "protein", "/bin/bash", "-c"]
 
 EXPOSE 8080
 
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8080"]
+CMD ["conda", "run", "--no-capture-output", "-n", "protein", "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8080"]

@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    {% block head %}
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link
+        rel="stylesheet"
+        href="{{ url_for ('static', filename='dist/css/styles.css') }}"
+      />
+      <title>{% block title %}{% endblock %} - Protein Calculator</title>
+    {% endblock %}
+  </head>
+
+  <body class="flex h-full min-h-screen justify-center">
+    <main class="w-full max-w-lg bg-gray-300">
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>

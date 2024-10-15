@@ -7,6 +7,10 @@ app = Flask(__name__)
 def index_page():
     return render_template("index.html")
 
+@app.route("/calculate")
+def calculate_page():
+    return render_template("calculate.html")
+
 @app.route("/result")
 def result_page():
     sites = food.random_food()

@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from typing import TypedDict
+from flask import Flask, render_template, request, jsonify
 import food
 
 app = Flask(__name__)
@@ -11,8 +12,17 @@ def index_page():
 def calculate_page():
     return render_template("calculate.html")
 
-@app.route("/result")
+class CalculateForm(TypedDict):
+    activity: str
+    age: str
+    allergy: str
+    disease: str
+    name: str
+    weight: str
+    
+@app.route("/result", methods=["POST"])
 def result_page():
+    data: CalculateForm = request.form
     sites = food.random_food()
     return render_template("result.html", sites=sites)
 

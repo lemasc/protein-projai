@@ -5,9 +5,5 @@
   "tailwindCSS.includeLanguages": {
     "jinja-html": "html"
   },
-  "emmet.includeLanguages": { "jinja-html": "html" },
-  "editor.defaultFormatter": "vscode.emmet",
-  "[jinja-html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  "emmet.includeLanguages": { "jinja-html": "html" }
 }

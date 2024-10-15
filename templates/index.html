@@ -1,5 +1,23 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
+
 {% block content %}
-  <h1 class="text-3xl font-bold text-red-500">Hello, Flask Render Template</h1>
+  <div>
+    <img
+      src="{{ url_for('static', filename='images/home.webp') }}"
+      class="max-h-screen min-h-screen min-w-full object-cover"
+    />
+
+    <div class="absolute bottom-0 left-0 z-10 w-full">
+      <div
+        class="h-[200px] w-full bg-gradient-to-b from-transparent to-white/90"
+      ></div>
+      <div class="flex flex-col items-center gap-6 bg-white/90 px-4 py-8">
+        <h1 class="text-primary text-4xl font-bold">Protein Calculator</h1>
+        <a href="/calculate" class="btn-primary px-8 py-3 text-xl font-bold">
+          Start
+        </a>
+      </div>
+    </div>
+  </div>
 {% endblock %}

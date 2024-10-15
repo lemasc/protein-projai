@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities
+@tailwind utilities;
+
+label {
+    @apply font-bold text-orange-800;
+}
+
+input[type='text'],
+input[type='number'],
+select {
+    @apply rounded-lg border border-primary-50/50 bg-primary-50/50 text-primary-600 shadow-sm focus:border-primary-600 focus:ring-primary-400;
+}
+
+.btn-primary {
+    @apply rounded-lg transition-colors focus:outline-none;
+    @apply text-white bg-primary hover:bg-primary-600 focus:bg-primary-600;
+}

@@ -2,6 +2,9 @@
 module.exports = {
   content: ["./templates/**/*.html"],
   theme: {
+    fontFamily: {
+      sans: ["IBM Plex Sans Thai", "sans-serif"],
+    },
     extend: {
       colors: {
         primary: {

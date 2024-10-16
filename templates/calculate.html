@@ -2,9 +2,22 @@
 {% block title %}Calculate{% endblock %}
 
 {% block content %}
+  <header class="relative">
+    <img
+      src="{{ url_for('static', filename='images/home.webp') }}"
+      class="h-[250px] min-w-full rounded-b-2xl object-cover"
+    />
+    <div
+      class="absolute bottom-0 left-0 z-10 h-[120px] w-full rounded-b-2xl bg-gradient-to-b from-transparent to-primary-700"
+    ></div>
+    <div class="absolute bottom-0 left-0 z-20 space-y-1.5 p-4 text-white">
+      <h1 class="text-4xl font-bold text-white drop-shadow-lg">กรอกข้อมูล</h1>
+      <p class="text-primary-100">กรอกข้อมูลเพื่อใช้ในการคำนวน!</p>
+    </div>
+  </header>
   <form
     action="/result"
-    class="flex flex-col space-y-3 p-4"
+    class="flex flex-col space-y-3 px-4 py-6"
     enctype="multipart/form-data"
     method="post"
   >

@@ -28,32 +28,25 @@
       <b class="text-xl">รายการอาหารที่เราแนะนำ</b>
       <div class="grid grid-cols-2 gap-4">
         {% for food in menu %}
-          <div class="relative aspect-square rounded-xl bg-zinc-100">
-            <img
-              class="absolute aspect-square rounded-xl object-cover"
-              src="https://drive.google.com/thumbnail?sz=w400&id={{ food["image"] }}"
-            />
-            <div
-              class="absolute bottom-0 left-0 z-10 w-full h-[100px] bg-gradient-to-b from-transparent to-primary-600/90 rounded-b-xl"
-            ></div>
-            <div class="absolute bottom-0 z-20 flex flex-col space-y-2 p-4">
-              {# {% for k in food.keys() %}
-              <span>{{ k }} {{ food[k] }}</span>
-            {% endfor %} #}
+          <div class="rounded-xl border-zinc-300 bg-zinc-300 shadow-lg">
+            <div class="relative aspect-square rounded-t-xl">
+              <img
+                class="absolute aspect-square rounded-xl object-cover"
+                src="https://drive.google.com/thumbnail?sz=w400&id={{ food["image"] }}"
+              />
+            </div>
+            <div class="flex flex-col space-y-2 bg-zinc-100 p-4 text-sm">
+              <span class="font-bold">{{ food["menu"] }}</span>
               <div>
-                <span>{{ food["protein_per_serving"] }}g</span>
                 <span
                   class="rounded-lg bg-primary-500 px-2 py-1 text-xs text-white"
                 >
                   {{ "อาหารจานหลัก" if food["type"] == "main" else "ของหวาน" }}</span
                 >
               </div>
-              <div class="flex flex-col text-sm">
-                <span class="font-bold">{{ food["menu"] }}</span>
-                <span class="text-sm"
-                  >ปริมาณโปรตีนต่อมื้อ {{ food["protein"] }}g</span
-                >
-              </div>
+              <span class="text-xs pt-1 text-zinc-700">
+                ปริมาณโปรตีนต่อมื้อ {{ food["protein_per_serving"] }}g</span
+              >
             </div>
           </div>
         {% endfor %}

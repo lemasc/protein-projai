@@ -2,11 +2,71 @@
 {% block title %}Result{% endblock %}
 
 {% block content %}
-    <ul>
-      {% for social in sites.keys() %}
-      <li>{{ social }} {{sites[social]}}</li>
-      {% endfor %}
-    </ul>
-  </body>
-</html>
+  <div class="flex min-h-[100dvh] flex-grow flex-col">
+    <header class="relative">
+      <img
+        src="{{ url_for('static', filename='images/result.webp') }}"
+        class="h-[250px] min-w-full rounded-b-2xl object-cover"
+      />
+      <div
+        class="absolute bottom-0 left-0 z-10 h-[150px] w-full rounded-b-2xl bg-gradient-to-b from-transparent to-primary-700"
+      ></div>
+      <div
+        class="absolute -bottom-10 left-0 z-20 flex w-full flex-col items-center justify-center space-y-1.5 p-4 text-white"
+      >
+        <p class="font-medium text-primary-50">
+          ปริมาณโปรตีนที่แนะนำสำหรับคุณ {{ form.name }} คือ
+        </p>
+        <h1
+          class="rounded-xl bg-primary-500 p-4 text-2xl font-bold text-white drop-shadow-lg"
+        >
+          {{ protein }} g
+        </h1>
+      </div>
+    </header>
+    <div class="flex flex-grow flex-col space-y-3 px-4 py-10">
+      <b class="text-xl">รายการอาหารที่เราแนะนำ</b>
+      <div class="grid grid-cols-2 gap-4">
+        {% for food in menu %}
+          <div class="relative aspect-square bg-zinc-100">
+            <div class="absolute bottom-0 flex flex-col space-y-2">
+              {# {% for k in food.keys() %}
+              <span>{{ k }} {{ food[k] }}</span>
+            {% endfor %} #}
+              <div>
+                <span>{{ food["protein_per_serving"] }}g</span>
+                <span
+                  class="rounded-lg bg-primary-500 px-2 py-1 text-xs text-white"
+                >
+                  {{ "อาหารจานหลัก" if food["type"] == "main" else "ของหวาน" }}</span
+                >
+              </div>
+              <div class="flex flex-col text-sm">
+                <span class="font-bold">{{ food["menu"] }}</span>
+                <span class="text-sm"
+                  >ปริมาณโปรตีนต่อมื้อ {{ food["protein"] }}g</span
+                >
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <form
+      class="flex w-full justify-end p-4"
+      action="/result"
+      enctype="multipart/form-data"
+      method="post"
+    >
+      <input type="hidden" name="name" value="{{ form.name }}" />
+      <input type="hidden" name="weight" value="{{ form.weight }}" />
+      <input type="hidden" name="age" value="{{ form.age }}" />
+      <input type="hidden" name="disease" value="{{ form.disease }}" />
+      <input type="hidden" name="activity" value="{{ form.activity }}" />
+      <input type="hidden" name="allergy" value="{{ form.allergy }}" />
+      <button class="btn-primary px-6 py-3 font-bold" type="submit">
+        สุ่มใหม่
+      </button>
+    </form>
+  </div>
 {% endblock %}

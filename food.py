@@ -2,6 +2,7 @@ from typing import TypedDict, Literal
 import pandas as pd
 import random
 import time
+import re
 
 df = None
 url = 'https://docs.google.com/spreadsheets/d/1_9AZb7hF7494ZyhKx-bTCcLHByKm0uXBq_pBInU1E84/export?gid=191160001&format=csv'
@@ -11,12 +12,15 @@ fetch_at = 0
 def split_to_list(string):
     return [x.strip() for x in string.split(",")]
 
+def drive_url_to_id(string):
+    result = re.sub(r"https://drive\.google\.com/file/d/(.*?)/.*?.*", r"\1", string)
+    return result
 
 def get_df(use_cached=True):
     global df, fetch_at
     if use_cached and df is not None:
         return df
-    df = pd.read_csv(url, converters={"ingredients": split_to_list})
+    df = pd.read_csv(url, converters={"ingredients": split_to_list, "image": drive_url_to_id})
     fetch_at = time.time()
     return df
 
@@ -99,8 +103,9 @@ def random_food_in_range(min_protein, max_protein, allergy=None):
     menu_names = set()
     total_protein = 0
     current_type = "main"
+    # prevent infinite loop, will reset if success
     random_attempt = 0
-    while total_protein < min_protein and random_attempt < 2:
+    while total_protein < min_protein and random_attempt < 10:
         random_attempt += 1
         random_food = get_random_food(current_type)
         menu_name = random_food["menu"]

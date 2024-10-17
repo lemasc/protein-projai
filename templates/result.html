@@ -28,8 +28,15 @@
       <b class="text-xl">รายการอาหารที่เราแนะนำ</b>
       <div class="grid grid-cols-2 gap-4">
         {% for food in menu %}
-          <div class="relative aspect-square bg-zinc-100">
-            <div class="absolute bottom-0 flex flex-col space-y-2">
+          <div class="relative aspect-square rounded-xl bg-zinc-100">
+            <img
+              class="absolute aspect-square rounded-xl object-cover"
+              src="https://drive.google.com/thumbnail?sz=w400&id={{ food["image"] }}"
+            />
+            <div
+              class="absolute bottom-0 left-0 z-10 w-full h-[100px] bg-gradient-to-b from-transparent to-primary-600/90 rounded-b-xl"
+            ></div>
+            <div class="absolute bottom-0 z-20 flex flex-col space-y-2 p-4">
               {# {% for k in food.keys() %}
               <span>{{ k }} {{ food[k] }}</span>
             {% endfor %} #}

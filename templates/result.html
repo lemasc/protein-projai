@@ -14,7 +14,7 @@
       <div
         class="absolute -bottom-10 left-0 z-20 flex w-full flex-col items-center justify-center space-y-1.5 p-4 text-white"
       >
-        <p class="font-medium text-primary-50">
+        <p class="px-4 text-center font-medium text-primary-50">
           ปริมาณโปรตีนที่แนะนำสำหรับคุณ {{ form.name }} คือ
         </p>
         <h1
@@ -28,14 +28,18 @@
       <b class="text-xl">รายการอาหารที่เราแนะนำ</b>
       <div class="grid grid-cols-2 gap-4">
         {% for food in menu %}
-          <div class="rounded-xl border-zinc-300 bg-zinc-300 shadow-lg">
+          <div
+            class="flex flex-col rounded-xl border-zinc-300 bg-zinc-300 shadow-lg"
+          >
             <div class="relative aspect-square rounded-t-xl">
               <img
                 class="absolute aspect-square rounded-xl object-cover"
                 src="https://drive.google.com/thumbnail?sz=w400&id={{ food["image"] }}"
               />
             </div>
-            <div class="flex flex-col space-y-2 bg-zinc-100 p-4 text-sm">
+            <div
+              class="flex flex-grow flex-col space-y-2 bg-zinc-100 p-4 text-sm"
+            >
               <span class="font-bold">{{ food["menu"] }}</span>
               <div>
                 <span
@@ -44,7 +48,7 @@
                   {{ "อาหารจานหลัก" if food["type"] == "main" else "ของหวาน" }}</span
                 >
               </div>
-              <span class="text-xs pt-1 text-zinc-700">
+              <span class="pt-1 text-xs text-zinc-700">
                 ปริมาณโปรตีนต่อมื้อ {{ food["protein_per_serving"] }}g</span
               >
             </div>
